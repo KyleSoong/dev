@@ -10,6 +10,8 @@
 		<config>src/main/webapp/WEB-INF/spring-servlet.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/spring/applicationContext-transaction.xml</config>
+		<config>src/main/resources/spring/applicationContext-dao.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.song.dev.model.User;
 
-public interface userMapper {
+public interface UserMapper {
 	public Integer insert(User user);
 	public List<User> getUserByName(String userName);
 	public void delete(int id);

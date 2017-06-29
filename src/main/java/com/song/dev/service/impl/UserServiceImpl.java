@@ -1,19 +1,26 @@
 package com.song.dev.service.impl;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.song.dev.mapper.UserMapper;
 import com.song.dev.model.User;
 import com.song.dev.service.IUserService;
 
+@Service
 public class UserServiceImpl implements IUserService {
-
+	
+	@Resource
+	private UserMapper userMapper;
+	
 	@Override
 	public User getUserById(int userId) {
-		User user = new User();
-		user.setId(100);
-		user.setPassword("123");
-		user.setUserName("Kyle");
-		user.setRole(2001);
-		user.setFlag(0);
-		return user;
+		List <User> userList = userMapper.getUserById(userId);
+		if(userList == null ) return null;
+		else return userList.get(0);
 	}
 
 }
