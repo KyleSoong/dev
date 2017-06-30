@@ -1,1 +1,15 @@
 /target/
+*.classpath
+*.project
+.settings
+.project
+.target
+.classpath
+**/.settings 
+**/.classpath
+**/.eclipse  
+**/target/  
+target/  
+bin/
+.svn 
+*.iml
