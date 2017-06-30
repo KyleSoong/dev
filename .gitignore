@@ -6,12 +6,17 @@ build/
 /target/
 bin/
 dependency-reduced-pom.xml  
-  
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
 # Eclipse Project Files
 .classpath
 .project
 .settings/
-  
+
 # IntelliJ IDEA Files
 *.iml
 *.ipr

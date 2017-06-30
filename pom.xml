@@ -250,7 +250,7 @@
 			<properties>
 				<package.environment>test</package.environment>
 			</properties>
-			<activation><activeByDefault>true</activeByDefault></activation>
+			<!-- <activation><activeByDefault>true</activeByDefault></activation> -->
 		</profile>
 		
 		<!-- 生产环境 -->
@@ -259,19 +259,22 @@
 			<properties>
 				<package.environment>prod</package.environment>
 			</properties>
-			<activation><activeByDefault>true</activeByDefault></activation>
+			<!-- <activation><activeByDefault>true</activeByDefault></activation> -->
 		</profile>
 	</profiles>
 
 
 	<build>
+		<finalName>dev</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		
 		<plugins>
+		
 			<!-- 编译插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -282,26 +285,28 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			
 			<!-- 添加时间戳插件 -->
 			<plugin>  
 			    <groupId>org.codehaus.mojo</groupId>  
 			    <artifactId>buildnumber-maven-plugin</artifactId>  
 			    <version>1.4</version>  
 			    <executions>  
-			        <execution>  
+			        <execution>
 			            <phase>validate</phase>  
 			            <goals>  
-			                <goal>create-timestamp</goal>  
+			                <goal>create-timestamp</goal>
 			            </goals>  
 			        </execution>  
 			    </executions> 
 			    <configuration>
-				    <timestampFormat>yyyyMMdd-HHmm</timestampFormat>
+				   	<timestampFormat>yyyyMMdd-HHmm</timestampFormat>
 				    <items>
 	                	<item>timestamp</item>
 	              	</items>
 				</configuration>  
-			</plugin>  
+			</plugin>
+			
 			<!-- 打包插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -309,7 +314,8 @@
 				<version>2.6</version>
 				<configuration>
 					<version>3.0</version>
-					<warName>${project.artifactId}-${package.environment}-${project.version}-${timestamp}</warName>
+					<outputDirectory>target/war/${project.artifactId}_${package.environment}_${project.version}_${timestamp}/</outputDirectory>
+					<warName>${project.artifactId}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
 			            <resource>			                <directory>src/main/filters/${package.environment}</directory>
