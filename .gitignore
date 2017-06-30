@@ -1,15 +1,26 @@
+# Build Artifacts
+.gradle/
+build/
 /target/
-*.classpath
-*.project
-.settings
-.project
-.target
-.classpath
-**/.settings 
-**/.classpath
-**/.eclipse  
-**/target/  
-target/  
 bin/
-.svn 
+dependency-reduced-pom.xml  
+  
+# Eclipse Project Files
+.classpath
+.project
+.settings/
+  
+# IntelliJ IDEA Files
 *.iml
+*.ipr
+*.iws
+*.idea
+
+# Operating System Files
+*.DS_Store
+Thumbs.db
+*.sw?
+.#*
+*# 
+*~
+*.sublime-*
