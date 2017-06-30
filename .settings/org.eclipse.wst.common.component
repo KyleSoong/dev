@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-jee/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <property name="java-output-path" value="/dev/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="myDev"/>
         <property name="component.exclusion.patterns"/>
+        <property name="context-root" value="dev-prod-0.0.1-SNAPSHOT-${timestamp}"/>
     </wb-module>
 </project-modules>
