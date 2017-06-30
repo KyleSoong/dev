@@ -1,3 +1,5 @@
+.svn/
+
 # Build Artifacts
 .gradle/
 build/
