@@ -15,4 +15,8 @@
 	<select id="getUserById" parameterType="com.song.dev.model.User" resultMap="baseResultMap">
 		select <include refid="baseSql" /> from tb_user where id=#{id}
 	</select>
+	
+	<insert id="insert" parameterType="com.song.dev.model.User" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_user(<include refid="baseSql" />) values ((select replace(uuid(),'-','') from dual),#{userName},#{password},#{age},#{role},#{flag})
+	</insert>
 </mapper>

@@ -21,10 +21,14 @@ public class UserController {
      
    @RequestMapping("/showUser")  
    public String toIndex(HttpServletRequest request,Model model){  
-       int userId = Integer.parseInt(request.getParameter("id"));  
-       int id = userId;
-       User user = this.userService.getUserById(id);  
+       String userId = request.getParameter("id");  
+       User user = this.userService.getUserById(userId);  
        model.addAttribute("user", user);  
-       return "sites/showUser";
+       return "views/showUser";
+   }
+   @RequestMapping("/createUser")  
+   public String addUser(HttpServletRequest request,Model model){  
+       String uid = this.userService.createUser();
+       return "views/showUser";
    }
 }

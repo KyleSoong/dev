@@ -2,7 +2,7 @@ create database dev;
 use dev;
 set global time_zone='+8:00';
 create table tb_user(
-	id int(11),
+	id varchar(32),
 	user_name varchar(25),
 	password varchar(32),
 	age int(3),
