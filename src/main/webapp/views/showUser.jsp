@@ -25,5 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     This is my JSP page. <br> 
     ${user.userName}  
+    userId:<input value="${userId}" />
   </body>
 </html>

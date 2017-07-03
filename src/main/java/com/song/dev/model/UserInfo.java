@@ -2,7 +2,7 @@ package com.song.dev.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserInfo implements Serializable {
 	private static final long serialVersionUID = -1487396999413471117L;
 	
 	private String id;

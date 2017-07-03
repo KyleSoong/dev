@@ -1,8 +1,8 @@
 package com.song.dev.service;
 
-import com.song.dev.model.User;
+import com.song.dev.model.UserInfo;
 
 public interface IUserService {
-    public User getUserById(String userId);
+    public UserInfo getUserById(String userId);
     public String createUser();
 }

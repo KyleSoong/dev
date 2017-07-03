@@ -1,34 +1,37 @@
 package com.song.dev.controller;
 
-import javax.annotation.Resource;  
-import javax.servlet.http.HttpServletRequest;  
- 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;  
-import org.springframework.ui.Model;  
-import org.springframework.web.bind.annotation.RequestMapping;  
-
-import com.song.dev.model.User;
+import com.song.dev.model.UserInfo;
 import com.song.dev.service.IUserService;
  
  
 @Controller  
 @RequestMapping("/user")  
 public class UserController {
-   @Resource  
-   private IUserService userService;  
+	private Logger logger = LoggerFactory.getLogger(UserController.class);
+	
+	@Resource  
+	private IUserService userService;
      
-   @RequestMapping("/showUser")  
-   public String toIndex(HttpServletRequest request,Model model){  
-       String userId = request.getParameter("id");  
-       User user = this.userService.getUserById(userId);  
-       model.addAttribute("user", user);  
-       return "views/showUser";
-   }
-   @RequestMapping("/createUser")  
-   public String addUser(HttpServletRequest request,Model model){  
-       String uid = this.userService.createUser();
-       return "views/showUser";
-   }
+	@RequestMapping("/showUser")
+	public String toIndex(HttpServletRequest request,Model model){
+		String userId = request.getParameter("id");
+		UserInfo user = this.userService.getUserById(userId);
+		model.addAttribute("user", user);
+		return "views/showUser";
+	}
+	@RequestMapping("/createUser")
+	public String addUser(HttpServletRequest request,Model model){
+		String uid = this.userService.createUser();
+		model.addAttribute("userId", uid);
+		return "views/showUser";
+	}
 }

@@ -15,7 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.song.dev.dao.BaseDao;
-import com.song.dev.model.User;
+import com.song.dev.model.UserInfo;
 
 @Transactional  
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)  
@@ -34,7 +34,7 @@ public class BaseDaoTest extends TestCase{
     @Test  
     public void testMyDao(){
         try{
-        	User u = (User) baseDao.getById(User.class,"101");
+        	UserInfo u = (UserInfo) baseDao.getById(UserInfo.class,"101");
         	System.out.println("-----------------------------");
         	System.out.println(u.getUserName());
         }catch (Exception e){  

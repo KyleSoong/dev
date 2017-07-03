@@ -14,7 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.song.dev.model.User;
+import com.song.dev.model.UserInfo;
 
 @Transactional  
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)  
@@ -33,7 +33,7 @@ public class UserServiceTest extends TestCase{
     @Test  
     public void test(){
         try{
-        	User u = (User) userService.getUserById("101");
+        	UserInfo u = (UserInfo) userService.getUserById("101");
         	u.setId(null);
         	userService.createUser();
         	System.out.println("-----------------------------");

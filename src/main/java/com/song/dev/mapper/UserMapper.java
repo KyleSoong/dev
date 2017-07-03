@@ -2,13 +2,14 @@ package com.song.dev.mapper;
 
 import java.util.List;
 
-import com.song.dev.model.User;
+import com.song.dev.model.UserAuth;
+import com.song.dev.model.UserInfo;
 
 public interface UserMapper {
-	public Integer insert(User user);
-	public List<User> getUserByName(String userName);
+	public Integer insertUserInfo(UserInfo userInfo);
+	public List<UserAuth> getUserByName(String userName);
 	public void delete(int id);
-	public List<User> getUserList();
-	public void update(User u);
-	public List<User> getUserById(int id);
+	public List<UserAuth> getUserList();
+	public void update(UserAuth u);
+	public List<UserAuth> getUserById(int id);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.song.dev.mapper.UserMapper">	
-	<resultMap type="com.song.dev.model.User" id="baseResultMap">
+<mapper namespace="com.song.dev.mapper.UserInfoMapper">	
+	<resultMap type="com.song.dev.model.UserInfo" id="baseResultMap">
 		<id column="id" property="id"/>
 		<result column="user_name" property="userName" />
 		<result column="password" property="password" />
@@ -11,12 +11,16 @@
 	</resultMap>
 	
 	<sql id="baseSql">id,user_name,password,age,role,flag</sql>
+	<sql id="baseInsertSql">user_name,password,age,role,flag</sql>
 	
-	<select id="getUserById" parameterType="com.song.dev.model.User" resultMap="baseResultMap">
-		select <include refid="baseSql" /> from tb_user where id=#{id}
+	<select id="getUserById" parameterType="com.song.dev.model.UserInfo" resultMap="baseResultMap">
+		select <include refid="baseSql" /> from t_user_info where id=#{id}
 	</select>
 	
-	<insert id="insert" parameterType="com.song.dev.model.User" useGeneratedKeys="true" keyProperty="id">
-		insert into tb_user(<include refid="baseSql" />) values ((select replace(uuid(),'-','') from dual),#{userName},#{password},#{age},#{role},#{flag})
+	<insert id="insert" parameterType="com.song.dev.model.UserInfo">
+	<selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+		select replace(uuid(),'-','') as id from dual
+	</selectKey>
+		insert into t_user_info (<include refid="baseInsertSql" />) values (#{userName},#{password},#{age},#{role},#{flag})
 	</insert>
 </mapper>
