@@ -1,16 +1,60 @@
 package com.song.dev.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserAuth implements Serializable {
 	
 	private static final long serialVersionUID = -1487396999413471117L;
 	
 	private String id;
-	private String username;
-	private String password;
+	private Integer userId;
+	private Integer identityType;
+	private String identifier;
+	private String credential;
 	private String salt;
+	private Boolean varified;
 	private Boolean locked = Boolean.FALSE;
+	private Date createTime;
+	private Date updateTime;
+	private Boolean isDelete;
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getIdentityType() {
+		return identityType;
+	}
+	public void setIdentityType(Integer identityType) {
+		this.identityType = identityType;
+	}
+	public Boolean getVarified() {
+		return varified;
+	}
+	public void setVarified(Boolean varified) {
+		this.varified = varified;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public String getId() {
 		return id;
@@ -18,17 +62,17 @@ public class UserAuth implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public String getIdentifier() {
+		return identifier;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
-	public String getPassword() {
-		return password;
+	public String getCredential() {
+		return credential;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCredential(String credential) {
+		this.credential = credential;
 	}
 	public String getSalt() {
         return salt;
@@ -37,7 +81,7 @@ public class UserAuth implements Serializable {
         this.salt = salt;
     }
     public String getCredentialsSalt() {
-        return username + salt;
+        return identifier + salt;
     }
 
     public Boolean getLocked() {
@@ -67,10 +111,12 @@ public class UserAuth implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserAuth{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", userId=" + userId + '\'' +
+                ", identityType=" + identityType + '\'' +
+                ", identifier='" + identifier + '\'' +
+                ", credential='" + credential + '\'' +
                 ", salt='" + salt + '\'' +
                 ", locked=" + locked +
                 '}';

@@ -7,9 +7,9 @@ import com.song.dev.model.UserInfo;
 
 public interface UserMapper {
 	public Integer insertUserInfo(UserInfo userInfo);
-	public List<UserAuth> getUserByName(String userName);
+	public UserInfo getUserInfoById(int id);
+	public List<UserInfo> getUserInfoByName(String userName);
+	public List<UserInfo> getUserInfoList();
 	public void delete(int id);
-	public List<UserAuth> getUserList();
 	public void update(UserAuth u);
-	public List<UserAuth> getUserById(int id);
 }

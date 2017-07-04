@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.song.dev.mapper.UserInfoMapper">	
+<mapper namespace="com.song.dev.mapper.UserMapper">	
 	<resultMap type="com.song.dev.model.UserInfo" id="baseResultMap">
 		<id column="id" property="id"/>
-		<result column="user_name" property="userName" />
-		<result column="password" property="password" />
-		<result column="age" property="age" />
-		<result column="role" property="role" />
-		<result column="flag" property="flag" />
+		<result property="username" column="username"  />
+		<result property="nickname" column="nickname" />
+		<result property="email" column="email" />
+		<result property="mobile" column="mobile" />
+		<result property="age" column="age" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
+		<result property="avatar" column="avatar" />
+		<result property="introduce" column="introduce" />
+		<result property="createTime" column="create_time"/>
+		<result property="updateTime" column="update_time" />
+		<result property="isDelete" column="is_delete"/>
 	</resultMap>
 	
-	<sql id="baseSql">id,user_name,password,age,role,flag</sql>
-	<sql id="baseInsertSql">user_name,password,age,role,flag</sql>
+	<sql id="baseSql">id,username,nickname,email,mobile,age,birthday,gender,avatar,introduce,create_time,update_time,is_delete</sql>
+	<sql id="baseInsertSql">username,nickname,email,mobile,age,birthday,gender,avatar,introduce,create_time,update_time,is_delete</sql>
 	
-	<select id="getUserById" parameterType="com.song.dev.model.UserInfo" resultMap="baseResultMap">
+	<select id="getUserInfoById" parameterType="com.song.dev.model.UserInfo" resultMap="baseResultMap">
 		select <include refid="baseSql" /> from t_user_info where id=#{id}
 	</select>
+	<insert id="insertUserInfo" parameterType="com.song.dev.model.UserInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into t_user_info (<include refid="baseInsertSql" />) 
+		values(#{username},#{nickname},#{email},#{mobile},#{age},#{birthday},#{gender},#{avatar},#{introduce},#{createTime},#{updateTime},#{isDelete})
+	</insert>
 	
-	<insert id="insert" parameterType="com.song.dev.model.UserInfo">
+	<!-- <insert id="insert" parameterType="com.song.dev.model.UserInfo">
 	<selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 		select replace(uuid(),'-','') as id from dual
 	</selectKey>
 		insert into t_user_info (<include refid="baseInsertSql" />) values (#{userName},#{password},#{age},#{role},#{flag})
-	</insert>
+	</insert> -->
 </mapper>

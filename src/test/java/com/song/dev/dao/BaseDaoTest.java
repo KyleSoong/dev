@@ -36,7 +36,7 @@ public class BaseDaoTest extends TestCase{
         try{
         	UserInfo u = (UserInfo) baseDao.getById(UserInfo.class,"101");
         	System.out.println("-----------------------------");
-        	System.out.println(u.getUserName());
+        	System.out.println(u.getUsername());
         }catch (Exception e){  
             fail("Test failed!");
         }  

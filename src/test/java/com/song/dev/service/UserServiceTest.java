@@ -33,11 +33,11 @@ public class UserServiceTest extends TestCase{
     @Test  
     public void test(){
         try{
-        	UserInfo u = (UserInfo) userService.getUserById("101");
+        	UserInfo u = (UserInfo) userService.getUserById(1);
         	u.setId(null);
         	userService.createUser();
         	System.out.println("-----------------------------");
-        	System.out.println(u.getUserName());
+        	System.out.println(u.getUsername());
         }catch (Exception e){  
             fail("Test failed!");
         }  

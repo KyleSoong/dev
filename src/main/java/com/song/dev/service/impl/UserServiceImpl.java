@@ -20,32 +20,24 @@ public class UserServiceImpl implements IUserService {
 	private BaseDao<UserInfo> baseDao;
 	
 	@Override
-	public UserInfo getUserById(String userId) {
-		/*User u = new User();
-		u.setAge(11);
-		u.setUserName("mybatis");
-		userMapper.insert(u);
-		
-		u.setId(null);
-		u.setUserName("hiber");
-		baseDao.save(u);
-		throw new RuntimeException("编号已经存在");*/
-		return baseDao.getById(UserInfo.class, userId);
+	public UserInfo getUserById(Integer userId) {
+		UserInfo ui = userMapper.getUserInfoById(Integer.valueOf(userId));
+		//UserInfo ui = baseDao.getById(UserInfo.class, userId);
+		//throw new RuntimeException("编号已经存在");
+		return ui;
 	}
 
 	@Override
 	public String createUser() {
-		UserInfo u = new UserInfo();
-		u.setAge(21);
-		u.setUserName("mybatis");
+		UserInfo u = UserInfo.newUser();
+		u.setIntroduce("我来自MyBatis！");
 		Integer um = userMapper.insertUserInfo(u);
 		System.out.println("数量："+um.toString()+">>>id:"+u.getId());
-		/*u.setId(null);
-		u.setUserName("hibernate");
+		u.setId(null);
+		u.setIntroduce("我来自Hibernate！");
 		Serializable uh = baseDao.save(u);
-		System.out.println(u.getId());*/
+		System.out.println("return:" + uh + "id:" + u.getId());
 		//throw new RuntimeException("编号已经存在");
-		return u.getId();
+		return u.getId().toString();
 	}
-
 }

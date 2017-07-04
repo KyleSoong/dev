@@ -94,11 +94,6 @@
 		<artifactId>mail</artifactId>
 		<version>1.4.1</version>
 	</dependency>
-	<dependency>
-		<groupId>joda-time</groupId>
-		<artifactId>joda-time</artifactId>
-		<version>2.7</version>
-	</dependency>
 	<!-- <dependency>
 		<groupId>javax.ws.rs</groupId>
 		<artifactId>jsr311-api</artifactId>
@@ -179,6 +174,12 @@
         <artifactId>mybatis-paginator</artifactId>
         <version>1.2.17</version>
     </dependency>
+    <!-- 针对JDK8中 java.time.*类型的处理 -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-typehandlers-jsr310</artifactId>
+	    <version>1.0.2</version>
+	</dependency>
 	
 	<!-- MySql -->
 	<dependency>
