@@ -7,8 +7,8 @@ public class UserAuth implements Serializable {
 	
 	private static final long serialVersionUID = -1487396999413471117L;
 	
-	private String id;
-	private Integer userId;
+	private Long id;
+	private Long userId;
 	private Integer identityType;
 	private String identifier;
 	private String credential;
@@ -19,10 +19,10 @@ public class UserAuth implements Serializable {
 	private Date updateTime;
 	private Boolean isDelete;
 	
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public Integer getIdentityType() {
@@ -56,10 +56,10 @@ public class UserAuth implements Serializable {
 		this.isDelete = isDelete;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getIdentifier() {

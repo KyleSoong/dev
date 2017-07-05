@@ -10,7 +10,7 @@ import com.song.dev.util.AppConst;
 public class UserInfo implements Serializable {
 	private static final long serialVersionUID = -1487396999413471117L;
 	
-	private Integer id;
+	private Long id;
 	private String username;
 	private String nickname;
 	private String email;
@@ -24,10 +24,10 @@ public class UserInfo implements Serializable {
 	private LocalDateTime updateTime;
 	private Boolean isDelete;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getUsername() {
