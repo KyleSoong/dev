@@ -1,7 +1,7 @@
 package com.song.dev.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class UserAuth implements Serializable {
 	
@@ -15,8 +15,8 @@ public class UserAuth implements Serializable {
 	private String salt;
 	private Boolean varified;
 	private Boolean locked = Boolean.FALSE;
-	private Date createTime;
-	private Date updateTime;
+	private LocalDateTime createTime;
+	private LocalDateTime updateTime;
 	private Boolean isDelete;
 	
 	public Long getUserId() {
@@ -37,16 +37,16 @@ public class UserAuth implements Serializable {
 	public void setVarified(Boolean varified) {
 		this.varified = varified;
 	}
-	public Date getCreateTime() {
+	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
+	public LocalDateTime getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(LocalDateTime updateTime) {
 		this.updateTime = updateTime;
 	}
 	public Boolean getIsDelete() {

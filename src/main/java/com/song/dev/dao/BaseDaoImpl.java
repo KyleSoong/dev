@@ -2,10 +2,38 @@ package com.song.dev.dao;
 
 import java.io.Serializable;
 
-public interface BaseDao<T> {
-	public T getById(Class<T> c, Serializable id);
-	public Serializable save(T o);
-	public void saveOrUpdate(T o);
+import javax.annotation.Resource;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+
+@Repository("baseDao")
+public class BaseDaoImpl <T> implements BaseDao<T>{
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	  
+	@Resource
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	 
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
+	
+	public T getById(Class<T> c, Serializable id){
+		return (T) this.getCurrentSession().get(c, id);
+	}
+	public Serializable save(T o){
+		return this.getCurrentSession().save(o);
+	}
+	public void saveOrUpdate(T o){
+		this.getCurrentSession().saveOrUpdate(o);
+	}
 	/*
 	public void delete(T o){
 		this.getCurrentSession().delete(o);

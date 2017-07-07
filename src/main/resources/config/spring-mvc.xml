@@ -32,9 +32,10 @@
     <!-- 访问静态资源 -->
     <!-- 默认配置：<mvc:default-servlet-handler />，需要在web.xml中配置 -->
     <!-- 自定义配置 -->
-    <mvc:resources location="/images/" mapping="/images/**" />
+    <mvc:resources location="/resources/" mapping="/resources/**" />
+    <!-- <mvc:resources location="/images/" mapping="/images/**" />
     <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/js/" mapping="/js/**" /> -->
 	
 	
 	<!-- 配置上传文件数据解析器 -->

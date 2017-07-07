@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.song.dev.util.AppConst;
+import com.song.dev.util.Constants;
 
 
 public class UserInfo implements Serializable {
@@ -129,7 +129,7 @@ public class UserInfo implements Serializable {
 		//u.setCreateTime(now);
 		//u.setUpdateTime(now);
 		u.setEmail("songkh@live.com");
-		u.setGender(AppConst.Gender.FEMALE);
+		u.setGender(Constants.Gender.FEMALE);
 		u.setIntroduce("爱吃爱玩~");
 		u.setMobile("17098996233");
 		u.setNickname("张大帅");
