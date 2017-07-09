@@ -59,20 +59,21 @@ public class UserController {
 		Map<String,Object> resultMap = new HashMap<String, Object>(); 
 		resultMap.put("message", "注册成功！");
 		resultMap.put("status", 200);
-		logger.info("新用户【{}】注册成功，登陆帐号为【{}】。",uInfo.getUsername(),uInfo.getId());
+		logger.info("新用户【{}】注册成功，登陆帐号为【{}】。",uInfo.getUsername(),uInfo.getEmail());
 		return resultMap;
 	}
 	
 	@RequestMapping("/doLogin")
+	@ResponseBody
 	public String doLogin(HttpServletRequest request,Model model){
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+		String identifier = request.getParameter("identifier");
+		String credential = request.getParameter("credential");
 		String remenmberMe = request.getParameter("rememberMe");
-		logger.info("User:{} Login With Password：{}", userId, password);
-		UsernamePasswordToken token = new UsernamePasswordToken(userId, password);
-		Subject subject = SecurityUtils.getSubject();
+		logger.info("User:{} Login With Password：{}", identifier, credential);
 		String msg = "";
 		try{
+			UsernamePasswordToken token = new UsernamePasswordToken(identifier, credential);
+			Subject subject = SecurityUtils.getSubject();
 			subject.login(token);
 			if(subject.isAuthenticated()){
 				return "/showUser?id=1";
@@ -82,7 +83,7 @@ public class UserController {
 		}catch(Exception e){
 			msg="登陆失败";
 		}
-		return "login";
+		return "{\"message\", \""+msg+"！\")";
 	}
 	
 	@RequestMapping("/showUser")

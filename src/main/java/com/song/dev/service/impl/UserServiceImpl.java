@@ -61,4 +61,9 @@ public class UserServiceImpl implements IUserService {
 		userAuthDao.save(uAuth);
 		return uInfo;
 	}
+
+	@Override
+	public UserAuth getUserAuthByIdentifier(String identifier) {
+		return userAuthDao.getUniqueByProperties(UserAuth.class, new String[]{"identifier"} , new String[]{identifier});
+	}
 }

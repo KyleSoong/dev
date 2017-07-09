@@ -1,5 +1,6 @@
 package com.song.dev.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -24,11 +25,17 @@ public class PasswordServiceImpl implements IPasswordService {
 	public UserAuth encryptPassword(UserAuth uAuth) {
 		// User对象包含最基本的字段Username和Password
         uAuth.setSalt(randomNumberGenerator.nextBytes().toHex());
-        // 将用户的注册密码经过散列算法替换成一个不可逆的新密码保存进数据，散列过程使用了盐
-        String newPassword = new SimpleHash(algorithmName, uAuth.getCredential(),
-                ByteSource.Util.bytes(uAuth.getCredentialsSalt()), hashIterations).toHex();
-        uAuth.setCredential(newPassword);
+        uAuth.setCredential(encrypt(uAuth.getCredential(), uAuth.getSalt()));
 		return uAuth;
 	}
-
+	
+	private String encrypt(String str, String salt){
+		if (StringUtils.isBlank(str) || StringUtils.isBlank(salt)){
+			return null;
+		}
+		// 将用户的注册密码经过散列算法替换成一个不可逆的新密码保存进数据，散列过程使用了盐
+		String encryptStr = new SimpleHash(algorithmName, str,
+				ByteSource.Util.bytes(salt), hashIterations).toHex();
+		return encryptStr;
+	}
 }

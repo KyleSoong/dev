@@ -6,6 +6,7 @@ public interface BaseDao<T> {
 	public T getById(Class<T> c, Serializable id);
 	public Serializable save(T o);
 	public void saveOrUpdate(T o);
+	public T getUniqueByProperties(Class<T> c, String[] properties, String[] values);
 	/*
 	public void delete(T o){
 		this.getCurrentSession().delete(o);

@@ -7,4 +7,5 @@ public interface IUserService {
     public UserInfo getUserById(Integer userId);
     public String createUser();
     public UserInfo createUser(UserInfo uInfo, UserAuth uAuth);
+    public UserAuth getUserAuthByIdentifier(String identifier);
 }
