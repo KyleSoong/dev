@@ -23,7 +23,7 @@
 	<aspectj.version>1.8.4</aspectj.version>
 	<!-- struts 2 -->
 	<struts2.version>2.5.10.1</struts2.version>
-	<!-- hibernate 4.3.11.Final-->
+	<!-- hibernate 4.3.11.Final/5.2.10.Final-->
 	<hibernate.version>5.2.10.Final</hibernate.version>
 	<!-- MyBaits -->
 	<mybatis.version>3.4.4</mybatis.version>
@@ -250,6 +250,13 @@
 	    <artifactId>shiro-core</artifactId>
 	    <version>1.4.0</version>
 	</dependency>
+    
+    <dependency>
+	    <groupId>org.ehcache</groupId>
+	    <artifactId>ehcache</artifactId>
+	    <version>3.3.1</version>
+	</dependency>
+    
     
   </dependencies>
 
