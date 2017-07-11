@@ -7,15 +7,15 @@
 		http://www.springframework.org/schema/context  
 		http://www.springframework.org/schema/context/spring-context-4.0.xsd"
 	default-lazy-init="true">
-
 	
 	<!-- shiro start -->
     <!-- 1. 配置SecurityManager -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="cacheManager" ref="cacheManager" />
-        <property name="authenticator" ref="authenticator"></property>
+        <property name="cacheManager" ref="shiroEhcacheManager" />
+        <property name="authenticator" ref="authenticator" />
        <!--  <property name="sessionManager" ref="sessionManager" /> -->
         <!-- 可以配置多个Realm，其实会把realms属性赋值给ModularRealmAuthenticator的realms属性 -->
+        <!-- <property name="realm" ref="userRealm" /> -->
         <property name="realms">
             <list>
                 <ref bean="userRealm" />
@@ -25,22 +25,22 @@
 
     <!-- 2. 配置CacheManager -->
     <!-- 2.1 需要加入ehcache的jar包及配置文件 -->
-    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:config/ehcache.xml" />
     </bean>
 
     <!-- 3. 配置Realm -->
     <!-- 3.1 直接配置继承了org.apache.shiro.realm.AuthorizingRealm的bean -->
     <bean id="userRealm" class="com.song.dev.util.UserRealm">
         <!-- 配置密码匹配器 -->
-        <property name="credentialsMatcher">
+<!--         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-                <!-- 加密算法为MD5 -->
+                加密算法为MD5
                 <property name="hashAlgorithmName" value="MD5"></property>
-                <!-- 加密次数 -->
+                加密次数
                 <property name="hashIterations" value="2"></property>
             </bean>
-        </property>
+        </property> -->
     </bean>
 
     <!-- 4. 配置LifecycleBeanPostProcessor，可以自定义地来调用配置在Spring IOC容器中shiro bean的生命周期方法 -->
