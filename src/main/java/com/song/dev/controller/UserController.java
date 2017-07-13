@@ -11,6 +11,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class UserController {
     
 	@RequestMapping("/register")
 	public String toRegister(HttpServletRequest request,Model model){
+		System.out.println("register page...");
 		return "views/register";
 	}
 
@@ -45,6 +47,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/doRegister", method=RequestMethod.POST)
+	@Scope("prototype")
 	@ResponseBody
 	public Map<String,Object> doRegister(HttpServletRequest request, UserInfo uInfo){
 		//UserInfo uInfo = new UserInfo();

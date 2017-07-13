@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository("baseDao")
@@ -39,16 +40,17 @@ public class BaseDaoImpl <T> implements BaseDao<T>{
 	
 	@Override
 	public T getUniqueByProperties(Class<T> c, String[] properties, String[] values) {
-		String queryString = createHql(c, properties, values) + " limit 1";
-		List<T> result = (List<T>) this.getCurrentSession().createQuery(queryString, c);
+		String queryString = createHql(c, properties, values);
+		Query query = this.getCurrentSession().createQuery(queryString, c).setMaxResults(1);
+		List<T> result = query.list();
 		return CollectionUtils.isEmpty(result) ? null : result.get(0);
 	}
 	
 	public String createHql(Class<T> c, String[] properties, Object[] values){
 		StringBuffer sb = new StringBuffer();
-		sb.append("from ").append(c.getName()).append(" where ");
+		sb.append("from ").append(c.getName()).append(" as model where ");
 		for (int i = 0; i < properties.length; i++) {
-			sb.append(properties[i]).append("=").append(values[i]).append(" and ");
+			sb.append("model.").append(properties[i]).append("='").append(values[i]).append("' and ");
 		}
 		return properties.length>0 ? sb.substring(0, sb.length()-5) : sb.toString();
 	}

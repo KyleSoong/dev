@@ -13,7 +13,7 @@ public class UserAuth implements Serializable {
 	private String identifier;
 	private String credential;
 	private String salt;
-	private Boolean varified;
+	private Boolean verified;
 	private Boolean locked = Boolean.FALSE;
 	private LocalDateTime createTime;
 	private LocalDateTime updateTime;
@@ -31,11 +31,11 @@ public class UserAuth implements Serializable {
 	public void setIdentityType(Integer identityType) {
 		this.identityType = identityType;
 	}
-	public Boolean getVarified() {
-		return varified;
+	public Boolean getVerified() {
+		return verified;
 	}
-	public void setVarified(Boolean varified) {
-		this.varified = varified;
+	public void setVerified(Boolean verified) {
+		this.verified = verified;
 	}
 	public LocalDateTime getCreateTime() {
 		return createTime;

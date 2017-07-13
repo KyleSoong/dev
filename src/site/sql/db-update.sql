@@ -33,3 +33,29 @@ CREATE TABLE t_user_auth(
 	is_delete	TINYINT(1) COMMENT '删除标志',
 	CONSTRAINT `fk_user_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `t_user_info` (`id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+use dev;
+
+CREATE TABLE t_role(
+	`id` int(6) not null auto_increment,
+	`name` VARCHAR(32) DEFAULT NULL COMMENT '角色名称',
+	`type` varchar(10) DEFAULT null comment '角色类型',
+	PRIMARY KEY (`id`)
+);
+
+CREATE table t_role_permission(
+	`role_id` INT(6) COMMENT '角色ID',
+	`permission_id` INT(6) COMMENT '权限ID'
+);
+
+CREATE TABLE t_permission(
+	`id` int(6) not NULL auto_increment,
+	`url` VARCHAR(256) DEFAULT NULL COMMENT 'URL地址',
+	`description` VARCHAR(64) DEFAULT NULL COMMENT '描述',
+	PRIMARY KEY (`id`)
+);
+
+CREATE table t_user_role(
+	`user_id` INT(6) COMMENT '用户ID',
+	`role_id` int(6) COMMENT '角色ID'
+);

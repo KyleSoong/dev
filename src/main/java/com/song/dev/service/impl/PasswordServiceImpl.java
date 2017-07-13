@@ -38,4 +38,10 @@ public class PasswordServiceImpl implements IPasswordService {
 				ByteSource.Util.bytes(salt), hashIterations).toHex();
 		return encryptStr;
 	}
+
+	@Override
+	public boolean passwordCorrect(String password, UserAuth uAuth) {
+		String encyptPassword = encrypt(password, uAuth.getSalt());
+		return uAuth.getCredential().equals(encyptPassword);
+	}
 }

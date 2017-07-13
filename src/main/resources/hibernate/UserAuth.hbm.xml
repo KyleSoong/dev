@@ -33,7 +33,7 @@
 		<property name="identifier" />
 		<property name="credential" />
 		<property name="salt" />
-		<property name="varified" />
+		<property name="verified" />
 		<property name="locked" />
 		<property name="createTime" column="create_time"/>
 		<property name="updateTime" column="update_time" />
