@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -68,25 +69,31 @@ public class UserController {
 	
 	@RequestMapping("/doLogin")
 	@ResponseBody
-	public String doLogin(HttpServletRequest request,Model model){
+	public Map<String,Object> doLogin(HttpServletRequest request,Model model){
 		String identifier = request.getParameter("identifier");
 		String credential = request.getParameter("credential");
 		String remenmberMe = request.getParameter("rememberMe");
 		logger.info("User:{} Login With Password：{}", identifier, credential);
 		String msg = "";
+		String backUrl = "";
+		Map<String,Object> resultMap = new HashMap<String, Object>(); 
+		resultMap.put("message", "注册成功！");
+		resultMap.put("status", 200);
 		try{
 			UsernamePasswordToken token = new UsernamePasswordToken(identifier, credential);
 			Subject subject = SecurityUtils.getSubject();
 			subject.login(token);
 			if(subject.isAuthenticated()){
-				return "/showUser?id=1";
-			}else{
-				return "login";
+				backUrl="/showUser?id=1";
 			}
+		}catch(UnknownAccountException e) {
+			msg="用户名不存在";
 		}catch(Exception e){
 			msg="登陆失败";
 		}
-		return "{\"message\", \""+msg+"！\")";
+		resultMap.put("message", msg);
+		resultMap.put("back_url", backUrl);
+		return resultMap;
 	}
 	
 	@RequestMapping("/showUser")
