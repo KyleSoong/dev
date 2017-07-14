@@ -113,11 +113,11 @@ public class UserAuth implements Serializable {
     public String toString() {
         return "UserAuth{" +
                 "id=" + id +
-                ", userId=" + userId + '\'' +
-                ", identityType=" + identityType + '\'' +
-                ", identifier='" + identifier + '\'' +
-                ", credential='" + credential + '\'' +
-                ", salt='" + salt + '\'' +
+                ", userId=" + userId + ',' +
+                ", identityType=" + identityType + ',' +
+                ", identifier='" + identifier + ',' +
+                ", credential='" + credential + ',' +
+                ", salt='" + salt + ',' +
                 ", locked=" + locked +
                 '}';
     }

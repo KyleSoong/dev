@@ -8,10 +8,10 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Service;
 
 import com.song.dev.model.UserAuth;
-import com.song.dev.service.IPasswordService;
+import com.song.dev.service.IAuthService;
 
-@Service("passwordService")
-public class PasswordServiceImpl implements IPasswordService {
+@Service("authService")
+public class AuthServiceImpl implements IAuthService {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
     private String algorithmName = "md5";
     private final int hashIterations = 2;

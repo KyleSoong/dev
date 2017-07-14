@@ -29,13 +29,15 @@
 	<!-- 6.1 id必须和web.xml中配置的DelegatingFilterProxy的<filter-name>一致。 如果不一致，会抛出NoSuchBeanDefinitionException异常，因为shiro会在IOC容器中查找名称和<filter-name> 值一致的filter bean -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/register" />
+		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/WEB-INF/index.jsp" />
-		<property name="unauthorizedUrl" value="/views/register.jsp" />
+		<property name="unauthorizedUrl" value="/views/login" />
 		<property name="filterChainDefinitions">
 			 <value>
 				<!-- 第一次匹配优先的原则 -->
 				/resources/**=anon
+				<!-- /login =anon -->
+				<!-- /views/** = authc -->
 			</value> 
 		</property>
 	</bean>

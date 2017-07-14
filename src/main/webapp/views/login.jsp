@@ -1,75 +1,182 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Login Page | Amaze UI Example</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="alternate icon" type="image/png" href="<%=basePath%>/resources/images/favicon.png">
-  <link rel="stylesheet" href="<%=basePath%>/resources/css/amazeui.min.css"/>
-  <style>
-    .header {
-      text-align: center;
-    }
-    .header h1 {
-      font-size: 200%;
-      color: #333;
-      margin-top: 30px;
-    }
-    .header p {
-      font-size: 14px;
-    }
-  </style>
+<html class="no-js"  lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link type="image/x-icon" rel="shortcut icon" href="<%=basePath%>/resources/images/favicon.ico">
+<title>:: Picxa | Register ::</title>
+<link type="text/css" rel="stylesheet" href="<%=basePath%>/resources/css/assets/normalize.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>/resources/css/assets/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>/resources/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>/resources/css/main.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>/resources/css/responsive.css">
+<script type="text/javascript" src="<%=basePath%>/resources/js/assets/modernizr-2.8.3.min.js"></script>
+<style>
+<%-- .main-wrapper-inner,.register-wrapper::before {background:url("<%=basePath%>/resources/images/details-image-3.jpg") 0 / cover fixed; --%>
+</style>
 </head>
+
 <body>
-<div class="header">
-  <div class="am-g">
-    <h1>Web ide</h1>
-    <p>Integrated Development Environment<br/>代码编辑，代码生成，界面设计，调试，编译</p>
-  </div>
-  <hr />
-</div>
-<div class="am-g">
-  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-    <h3>登录</h3>
-    <hr>
-    <div class="am-btn-group">
-      <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a>
-      <a href="#" class="am-btn am-btn-success am-btn-sm"><i class="am-icon-google-plus-square am-icon-sm"></i> Google+</a>
-      <a href="#" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-stack-overflow am-icon-sm"></i> stackOverflow</a>
-    </div>
-    <br>
-    <br>
+<main class="main-wrapper-inner" id="container">
+ 	<div class="container">
+	<div class="wrapper-inner">
+	<div class="register-wrapper"  id="reg" style="display:block" >
+		<div class="inner-right">
+			<header>
+				<h3>Join Us!</h3>
+			</header>
+			<div class="register-form" id="reg">
+				<form method="post" action="javascript:void(0)" name="rform" id="rform">
+					<label>Whats your name <span>*</span> 
+						<input name="name" type="text">
+					</label>
+					<label>Whats your email <span>*</span>
+						<input name="email" type="text">
+					</label>
+					<label>Whats your password <span>*</span>
+						<input name="password1" type="password">
+					</label>
+					<label>Repeat your password <span>*</span>
+						<input name="password2" type="password">
+					</label>	
+					<!-- <div class="clearfix"></div>
+					<label>Introduce yourself 
+						<textarea name="comments" id="comments" cols="" rows=""></textarea>
+					</label> -->
+					<div class="clearfix"></div>
+						<input class="register" name="" type="submit" value="Go Register">
+						<input class="button" type="button" value="Go Login" onclick="changePage();">
+					<div id="simple-msg" class="simple-msg" style="color: red;"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+		<div class="register-wrapper" id="login" style="display:none" >
+		<div class="inner-right">
+			<header>
+				<h3>Login</h3>
+			</header>
+			<div class="register-form">
+				<form method="post" action="javascript:void(0)" name="lform" id="lform">
+					<label>Whats your account
+						<input name="identifier" id="identifier" type="text">
+					</label>
+			
+					<label>Whats your password
+						<input name="password" id="password" type="password">
+						<input name="credential" id="credential" type="hidden">
+					</label>
+					<!-- <div class="clearfix"></div>
+					<label>Introduce yourself 
+						<textarea name="comments" id="comments" cols="" rows=""></textarea>
+					</label> -->
+					<div class="clearfix"></div>
+						<input class="login" name="" type="submit" value="Login">
+						<input class="button" type="button" value="Go Register" onclick="changePage()">
+					<div id="simple-msg" class="simple-msg" style="color: red;"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</main>
 
-    <form method="post" class="am-form">
-      <label for="email">邮箱:</label>
-      <input type="email" name="" id="email" value="">
-      <br>
-      <label for="password">密码:</label>
-      <input type="password" name="" id="password" value="">
-      <br>
-      <label for="remember-me">
-        <input id="remember-me" type="checkbox">
-        记住密码
-      </label>
-      <br />
-      <div class="am-cf">
-        <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
-        <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
-      </div>
-    </form>
-    <hr>
-    <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-  </div>
-</div>
+<!-- footer -->
+<jsp:include page="footer.jsp" />
+<!-- footer -->
+
+<script	src="<%=basePath%>/resources/js/jquery.min.js"></script>
+<script>
+	function changePage(){
+		if($("#reg").css('display') == "none"){
+			$("#reg").css('display','block'); 
+			$("#login").css('display','none');
+		}else{
+			$("#login").css('display','block');
+			$("#reg").css('display','none');
+		}
+	}
+	window.jQuery || document.write('<script src="<%=basePath%>resources/js/assets/jquery.min.js"><\/script>');
+	function chkInfo(){
+		if($("input[name='name']").val() == "" ){
+			$(".simple-msg:visible").html("*[name] cannot be null*");
+			return false;
+		}
+		if($("input[name='email']").val()==""){
+			$(".simple-msg:visible").html("*[email] cannot be null*");
+			return false;
+		}
+		if($("input[name='password1']").val() ==""){
+			$(".simple-msg:visible").html("*[password] cannot be null*");
+			return false;
+		}else if($("input[name='password1']").val() != $("input[name='password2']").val()){
+			$(".simple-msg:visible").html("*two passwords are different*");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function chkLoginInfo(){
+		if($("#identifier").val() == "" ){
+			$(".simple-msg:visible").html("*please input your account*");
+			return false;
+		}
+		if($("#password").val()==""){
+			$(".simple-msg:visible").html("*please input your password*");
+			return false;
+		}
+		return true;
+	}
+	$(document).ready(function(){
+		changePage();
+		$(".register").click(function(){
+			$(".simple-msg:visible").html("");
+			if(chkInfo()){
+				$.post("<%=basePath%>/doRegister",
+						{	"name":$("input[name='name']").val(),
+							"email":$("input[name='email']").val(),
+							"password":MD5($("input[name='email']").val().toLowerCase()+"#"+$("input[name='password1']").val())} ,
+						function(result){
+							$(".simple-msg:visible").html(result.message);
+		    	},"json");
+			}
+			
+		});
+		$(".login").click(function(){
+			$(".simple-msg:visible").html("");
+			if(chkLoginInfo()){
+				//console.info($("input[name='identifier']").val() + "#" + $("input[name='password']").val());				
+				$("#credential").val(
+						MD5( $("input[name='identifier']").val().toLowerCase() + "#" + $("input[name='password']").val() )
+						);
+				$.post("<%=basePath%>/doLogin",
+						$("#lform").serialize() ,
+						function(result){
+							$(".simple-msg:visible").html(result.message);
+		    	},"json");
+			}
+			
+		});
+	})
+	
+	
+</script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/MD5.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/assets/plugins.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/assets/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/custom.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/jquery.contact.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/main.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/js/jquery.nicescroll.min.js"></script>
+
 </body>
-</html>
 
+</html>

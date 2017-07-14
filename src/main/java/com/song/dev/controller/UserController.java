@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.song.dev.model.UserAuth;
 import com.song.dev.model.UserInfo;
-import com.song.dev.service.IPasswordService;
+import com.song.dev.service.IAuthService;
 import com.song.dev.service.IUserService;
 import com.song.dev.util.Constants;
  
@@ -34,13 +36,7 @@ public class UserController {
 	@Resource  
 	private IUserService userService;
 	@Resource
-	private IPasswordService passwordService;
-    
-	@RequestMapping("/register")
-	public String toRegister(HttpServletRequest request,Model model){
-		System.out.println("register page...");
-		return "views/register";
-	}
+	private IAuthService authService;
 
 	@RequestMapping("/login")
 	public String toLogin(HttpServletRequest request,Model model){
@@ -58,12 +54,13 @@ public class UserController {
 		uAuth.setIdentifier(uInfo.getEmail());
 		uAuth.setIdentityType(Constants.IdentityType.EMAIL);
 		uAuth.setCredential(request.getParameter("password"));
-		passwordService.encryptPassword(uAuth);
+		logger.info("新用户注册：用户名【{}】,邮箱【{}】,密码【{}】.",uInfo.getUsername(),uInfo.getEmail(),uAuth.getCredential());
+		authService.encryptPassword(uAuth);
 		userService.createUser(uInfo, uAuth);
 		Map<String,Object> resultMap = new HashMap<String, Object>(); 
 		resultMap.put("message", "注册成功！");
 		resultMap.put("status", 200);
-		logger.info("新用户【{}】注册成功，登陆帐号为【{}】。",uInfo.getUsername(),uInfo.getEmail());
+		logger.info("新用户【{}】注册成功,登陆帐号为【{}】。",uInfo.getUsername(),uInfo.getEmail());
 		return resultMap;
 	}
 	
@@ -73,12 +70,10 @@ public class UserController {
 		String identifier = request.getParameter("identifier");
 		String credential = request.getParameter("credential");
 		String remenmberMe = request.getParameter("rememberMe");
-		logger.info("User:{} Login With Password：{}", identifier, credential);
+		logger.info("User【{}】 Login With Password【{}】。", identifier, credential);
 		String msg = "";
 		String backUrl = "";
 		Map<String,Object> resultMap = new HashMap<String, Object>(); 
-		resultMap.put("message", "注册成功！");
-		resultMap.put("status", 200);
 		try{
 			UsernamePasswordToken token = new UsernamePasswordToken(identifier, credential);
 			Subject subject = SecurityUtils.getSubject();
@@ -88,8 +83,12 @@ public class UserController {
 			}
 		}catch(UnknownAccountException e) {
 			msg="用户名不存在";
+		}catch(IncorrectCredentialsException e) {
+			msg="密码不正确";
+		}catch(DisabledAccountException e) {
+			msg="用户被冻结";
 		}catch(Exception e){
-			msg="登陆失败";
+			msg="授权失败";
 		}
 		resultMap.put("message", msg);
 		resultMap.put("back_url", backUrl);
